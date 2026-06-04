@@ -1,4 +1,3 @@
-import { hackModelsRemoveFirstToken } from "./index";
 import { openSourceModels } from ".";
 import { PreTrainedTokenizer, env } from "@xenova/transformers";
 import type { z } from "zod";
@@ -47,13 +46,10 @@ export class OpenSourceTokenizer implements Tokenizer {
 
   tokenize(text: string): TokenizerResult {
     const tokens = this.tokenizer.encode(text);
-    const removeFirstToken = (
-      hackModelsRemoveFirstToken.options as string[]
-    ).includes(this.name);
     return {
       name: this.name,
       tokens,
-      segments: getHuggingfaceSegments(this.tokenizer, text, removeFirstToken),
+      segments: getHuggingfaceSegments(this.tokenizer, text, false),
       count: tokens.length,
     };
   }

@@ -22,7 +22,7 @@ async function download() {
       }
 
       const headers: Record<string, string> = {
-        ContentType: "application/json",
+        "Content-Type": "application/json",
       };
       if (env.HF_API_KEY) {
         headers.Authorization = `******`;

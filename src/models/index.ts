@@ -10,8 +10,6 @@ export function tempLlama3HackGetRevision(_model: AllModels): string {
   return "main";
 }
 
-export const hackModelsRemoveFirstToken = z.enum([] as const);
-
 export const allModels = openSourceModels;
 
 export type AllModels = z.infer<typeof allModels>;
@@ -27,10 +25,6 @@ export const POPULAR: z.infer<typeof allOptions>[] = [
   "Qwen/Qwen3.6-35B-A3B",
   "zai-org/GLM-4.7",
 ];
-
-export function isChatModel(_model: AllOptions): boolean {
-  return false;
-}
 
 export function isValidOption(model: unknown): model is AllOptions {
   return allOptions.safeParse(model).success;

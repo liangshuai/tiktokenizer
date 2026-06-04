@@ -97,7 +97,7 @@ const Home: NextPage<
               target="_blank"
               rel="noreferrer"
               className="text-slate-800"
-              href="https://github.com/liangshuai/tiktokenizer"
+              href="https://github.com/dqbd/tiktokenizer"
             >
               <Github />
             </a>
