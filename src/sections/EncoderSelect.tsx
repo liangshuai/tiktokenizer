@@ -7,16 +7,12 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandSeparator,
 } from "~/components/Command";
 import { Popover, PopoverContent, PopoverTrigger } from "~/components/Popover";
 import {
   type AllOptions,
-  POPULAR,
   allOptions,
   isValidOption,
-  oaiEncodings,
-  oaiModels,
   openSourceModels,
 } from "~/models";
 
@@ -57,10 +53,10 @@ export function EncoderSelect(props: {
         </PopoverTrigger>
         <PopoverContent className="max-h-[70vh] overflow-auto p-0 pb-2">
           <Command>
-            <CommandInput placeholder="Search model or encoder..." />
-            <CommandEmpty>No model or encoder found.</CommandEmpty>
-            <CommandGroup heading="Popular">
-              {POPULAR.map((value) => (
+            <CommandInput placeholder="Search model..." />
+            <CommandEmpty>No model found.</CommandEmpty>
+            <CommandGroup heading="Models">
+              {openSourceModels.options.map((value) => (
                 <CommandItem
                   key={value}
                   value={value}
@@ -69,54 +65,6 @@ export function EncoderSelect(props: {
                   {value}
                 </CommandItem>
               ))}
-            </CommandGroup>
-
-            <CommandSeparator />
-
-            <CommandGroup heading="Open-Source Models">
-              {openSourceModels.options
-                .filter((x) => !POPULAR.includes(x))
-                .map((value) => (
-                  <CommandItem
-                    key={value}
-                    value={value}
-                    onSelect={onSelect(value)}
-                  >
-                    {value}
-                  </CommandItem>
-                ))}
-            </CommandGroup>
-
-            <CommandSeparator />
-
-            <CommandGroup heading="OpenAI Encodings">
-              {oaiEncodings.options
-                .filter((x) => !POPULAR.includes(x))
-                .map((value) => (
-                  <CommandItem
-                    key={value}
-                    value={value}
-                    onSelect={onSelect(value)}
-                  >
-                    {value}
-                  </CommandItem>
-                ))}
-            </CommandGroup>
-
-            <CommandSeparator />
-
-            <CommandGroup heading="OpenAI Models">
-              {oaiModels.options
-                .filter((x) => !POPULAR.includes(x))
-                .map((value) => (
-                  <CommandItem
-                    key={value}
-                    value={value}
-                    onSelect={onSelect(value)}
-                  >
-                    {value}
-                  </CommandItem>
-                ))}
             </CommandGroup>
           </Command>
         </PopoverContent>
