@@ -21,17 +21,19 @@ async function download() {
         continue;
       }
 
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (env.HF_API_KEY) {
+        headers.Authorization = `******`;
+      }
+
       // eg https://huggingface.co/codellama/CodeLlama-7b-hf/resolve/main/tokenizer.json
       const res = await fetch(
         `https://huggingface.co/${orgId}/${modelId}/resolve/${encodeURIComponent(
           rev
         )}/${file}`,
-        {
-          headers: {
-            Authorization: `Bearer ${env.HF_API_KEY}`,
-            ContentType: "application/json",
-          },
-        }
+        { headers }
       );
 
       if (!res.ok) {
